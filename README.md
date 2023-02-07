@@ -33,37 +33,60 @@ Things you may want to cover:
 | email              | string | null: false |
 | password           | string | null: false |
 | encrypted_password | string | null: false |
-| name               | string | null: false |
-| kana_name          | string | null: false |
-| birthday           | string | null: false |
+| family_name        | string | null: false |
+| first_name         | string | null: false |
+| kana_family_name   | string | null: false |
+| kana_first_name    | string | null: false |
+| birthday           | date   | null: false |
 
 ### Association
 
-- has_many :item
-- has_many :comment
+- has_many :items
+- has_many :purchases
+- has_many :addressees
 
 ## items テーブル
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| item_name          | string | null: false |
-| item_text          | text   | mull: false |
-| category           | string | null: false |
-| area               | string | null: false |
-| postage            | string | null: false |
-| send_day           | string | null: false |
-| price              | string | null: false |
+| Column             | Type       | Options                        |
+| ------------------ | ------     | -----------                    |
+| item_name          | string     | null: false                    |
+| item_text          | text       | mull: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| area_id            | integer    | null: false                    |
+| postage_id         | integer    | null: false                    |
+| send_day_id        | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user_id            | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :comment
+- has_one :purchase
+- has_one :purchase
 
-##comments テーブル
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| comment_text       | text   | null: false |
+## purchaseテーブル
+| Column             | Type       | Options                        |
+| ------------------ | -----------| -----------                    |
+| item_id            | references | null: false, foreign_key: true |
+| addressee_id       | references | null: false, foreign_key: true |
+| user_id            | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- has_one    :addressee
+
+## addresseeテーブル
+| Column             | Type       | Options                        |
+| ------------------ | -----------| -----------                    |
+| address            | text       | null: false                    |
+| user_id            | references | null: false, foreign_key: true |
+| item_id            | references | null: false, foreign_key: true |
+| purchase_id        | references | null: false, foreign_key: true |
+
+### Association
+
+-belongs_to :user
+-belongs_to :item
+-has_one    :purchase

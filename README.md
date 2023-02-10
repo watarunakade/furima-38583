@@ -54,7 +54,7 @@ Things you may want to cover:
 | postage_id         | integer    | null: false                    |
 | send_day_id        | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| users              | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 

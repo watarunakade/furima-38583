@@ -31,7 +31,6 @@ Things you may want to cover:
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
 | email              | string | null: false |
-| password           | string | null: false |
 | encrypted_password | string | null: false |
 | family_name        | string | null: false |
 | first_name         | string | null: false |
@@ -43,7 +42,6 @@ Things you may want to cover:
 
 - has_many :items
 - has_many :purchases
-- has_many :addressees
 
 ## items テーブル
 | Column             | Type       | Options                        |
@@ -56,37 +54,36 @@ Things you may want to cover:
 | postage_id         | integer    | null: false                    |
 | send_day_id        | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| user_id            | references | null: false, foreign_key: true |
+| users              | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one :purchase
 - has_one :purchase
 
 ## purchaseテーブル
 | Column             | Type       | Options                        |
 | ------------------ | -----------| -----------                    |
-| item_id            | references | null: false, foreign_key: true |
-| addressee_id       | references | null: false, foreign_key: true |
-| user_id            | references | null: false, foreign_key: true |
+| item               | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :addressee
+- has_one    :address
 
-## addresseeテーブル
+## addressesテーブル
 | Column             | Type       | Options                        |
 | ------------------ | -----------| -----------                    |
-| address            | text       | null: false                    |
-| user_id            | references | null: false, foreign_key: true |
-| item_id            | references | null: false, foreign_key: true |
-| purchase_id        | references | null: false, foreign_key: true |
+| post_code          | integer    | null: false                    |
+| city_id            | integer    | null: false                    |
+| address            | string     | null: false                    |
+| address_number     | string     | null: false                    |
+| building           | string     |                                |
+| phone_number       | integer    | null: false                    |
+| purchase           | references | null: false, foreign_key: true |
 
 ### Association
 
--belongs_to :user
--belongs_to :item
--has_one    :purchase
+-belongs_to :purchase

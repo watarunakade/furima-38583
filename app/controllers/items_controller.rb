@@ -8,3 +8,8 @@ class ItemsController < ApplicationController
     @item = Item.create
   end
 end
+
+private
+
+def item_params
+  params.require(:item).permit(:content, :image).marge(user_id: current_user.id)

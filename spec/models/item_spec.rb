@@ -4,6 +4,7 @@ RSpec.describe Item, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
   before do
     @item = FactoryBot.build(:item)
+    @item.image = fixture_file_upload("/images/test.png")
   end
 
   describe '商品出品機能' do
@@ -14,6 +15,16 @@ RSpec.describe Item, type: :model do
     end
 
     context '消費出品できないとき' do
+      it 'userが紐づいていなければ出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
+      it '画像が空の時、出品できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Image can't be blank")
+      end
       it 'item_nameが空の時、出品できない' do
         @item.item_name = ''
         @item.valid?
@@ -48,6 +59,11 @@ RSpec.describe Item, type: :model do
         @item.sendday_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include ("Sendday can't be blank")
+      end
+      it 'priceが空の時、出品できない' do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Price can't be blank")
       end
       it 'priceが300未満の時、出品できない' do
         @item.price = '299'

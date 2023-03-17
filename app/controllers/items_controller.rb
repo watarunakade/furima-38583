@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
+    @purchase = Purchase.all
   end
   def new
     if user_signed_in?

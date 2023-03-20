@@ -9,9 +9,7 @@ app/assets/stylesheets/items/new.css %>
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     <%= render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -112,7 +110,7 @@ app/assets/stylesheets/items/new.css %>
         <div class="price-content">
           <span>販売利益</span>
           <span>
-            <span id='profit'><script src = "new.js"></script></span>円
+            <span id='profit'></script></span>円
           </span>
         </div>
       </div>

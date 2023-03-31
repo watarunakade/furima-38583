@@ -3,7 +3,7 @@ class CreateAddresses < ActiveRecord::Migration[6.0]
     create_table :addresses do |t|
       t.string :post_code, null: false
       t.integer :city_id, null: false
-      t.string :address, null: false
+      t.string :address_street, null: false
       t.string :address_number, null: false
       t.string :building
       t.string :phone_number, null: false

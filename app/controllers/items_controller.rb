@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
   def show
   end
   def edit
-    if !(current_user == @item.user)
+    if !(current_user == @item.user) || @purchase.blank?
       redirect_to root_path
     end
   end

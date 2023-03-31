@@ -55,6 +55,12 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
       end
+
+      it '電話番号が数字以外の場合、購入できない' do
+        @purchase_address.phone_number = 'アイウエオ'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Phone number is invalid")
+      end
     end
   end
 end

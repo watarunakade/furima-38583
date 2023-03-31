@@ -8,7 +8,7 @@ class PurchaseAddress
     validates :address_street, presence: true
     validates :address_number, presence: true
     validates :building, allow_blank: true
-    validates :phone_number, presence: true, numericality: {with: /\A[0-9]{10~11}\z/}
+    validates :phone_number, presence: true, format: {with: /\A\d{9,10}\z/}
     validates :item_id, presence: true
     validates :user_id, presence: true
   end

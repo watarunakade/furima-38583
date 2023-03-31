@@ -27,7 +27,7 @@ RSpec.describe PurchaseAddress, type: :model do
       end
 
       it '都道府県が未選択の場合、購入できない' do
-        @purchase_address.city_id = '1'
+        @purchase_address.area_id = '1'
         @purchase_address.valid?
         expect(@purchase_address.errors.full_message).to include("City id can't be blank")
       end

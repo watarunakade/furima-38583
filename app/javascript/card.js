@@ -18,16 +18,16 @@ const pay = () => {
       } else {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='token' type = "hidden">`;
+        const tokenObj = `<input value=${token} type="hidden" name='token'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
       numberElement.clear();
       expiryElement.clear();
       cvcElement.clear();
-      document.getElementBuId("charge-form").submit();
+      document.getElementById("charge-form").submit();
     });
   });
 };
 
 
-window.addEventListener("Load", pay);
+window.addEventListener("load", pay);

@@ -5,7 +5,8 @@ FactoryBot.define do
     address_street    {Faker::Address.street_address}
     address_number    {Faker::Address.secondary_address}
     phone_number      {Faker::Number.number(digits: 10)}
-    item_id           {Faker::Number.number(digits: 1)}
+    association       :user
+    association       :item
     user_id           {Faker::Number.number(digits: 1)}
     token             {"tok_abcdefghijk00000000000000000"}
   end

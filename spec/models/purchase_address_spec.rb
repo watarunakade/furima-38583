@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe PurchaseAddress, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
   before do
-    @purchase_address = FactoryBot.build(:purchase_address)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @purchase_address = FactoryBot.build(:purchase_address, item_id: item, user_id: user)
   end
 
   describe '商品購入機能' do

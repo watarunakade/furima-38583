@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2023_03_22_110631) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "post_code", null: false
-    t.integer "city_id", null: false
-    t.string "address", null: false
+    t.integer "area_id", null: false
+    t.string "address_street", null: false
     t.string "address_number", null: false
     t.string "building"
     t.string "phone_number", null: false
@@ -64,10 +64,8 @@ ActiveRecord::Schema.define(version: 2023_03_22_110631) do
   create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id"
     t.bigint "user_id"
-    t.bigint "address_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["address_id"], name: "index_purchases_on_address_id"
     t.index ["item_id"], name: "index_purchases_on_item_id"
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end
